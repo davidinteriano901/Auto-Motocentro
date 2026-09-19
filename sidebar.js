@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="sidebar-section">
                     <h4>🏍️ Repuestos para Moto</h4>
                     <ul class="sidebar-menu">
-                        <li><a href="categoriasm.html">📋 Categorías Moto</a></li>
+                        <li><a href="categoriass.html">📋 Categorías Moto</a></li>
                         <li><a href="aceitesylubricantesm.html">🛢️ Aceites y Lubricantes</a></li>
                         <li><a href="sistemasdefrenosm.html">🛞 Sistemas de Frenos</a></li>
                         <li><a href="motorydistribuicionm.html">🏎️ Motor y Distribución</a></li>
