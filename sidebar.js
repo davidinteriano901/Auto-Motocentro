@@ -224,11 +224,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <!-- Atención y Ubicación -->
                 <div class="sidebar-section">
                     <h4>¿NECESITÁS AYUDA?</h4>
-                    <p class="theme-subtitle">¿No encontrás tu repuesto o querés visitarnos?</p>
+                    <p class="theme-subtitle">¿No encuentras tu repuesto o quieres visitarnos?</p>
                     <a href="tel:+50231841198" style="text-decoration: none;">
                         <button type="button" class="btn-sidebar-call">📞 Llamar a Asesor</button>
                     </a>
-                    <a href="https://maps.app.goo.gl/EBnJdrhhGgrBiirs7" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <a href="https://maps.app.goo.gl/cy93vYPB3iuKFvLx8" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                         <button type="button" class="btn-sidebar-map">📍 Nos Ubicamos</button>
                     </a>
                 </div>
