@@ -296,6 +296,11 @@ html:not(.theme-light) .card-producto h4 {
 
 </head>
 <body>
+  <!-- Botón Flotante para Abrir el Menú -->
+    <button id="btn-open-sidebar" class="btn-sidebar-toggle" title="Menú de opciones">☰</button>
+
+    <!-- Contenedor donde se cargará dinámicamente sidebar.html -->
+    <div id="sidebar-container"></div>
 
     <img src="logo.png" alt="Logo de La Casa del Repuesto" class="logo-negocio">
     
@@ -341,6 +346,9 @@ html:not(.theme-light) .card-producto h4 {
         </button>
       </div>
     </div>
+    
+      <script src="sidebar.js"></script>
+
     
 
 </body>
