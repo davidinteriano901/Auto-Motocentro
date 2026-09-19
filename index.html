@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto-Motocentro</title>
     <link rel="stylesheet" href="estilos.css">
     
-    <!-- SCRIPT ANTI-PARPADEO (Lee el tema antes de renderizar la página) -->
+    <!-- SCRIPT ANTI-PARPADEO DE TEMAS -->
     <script>
       (function() {
         const savedTheme = localStorage.getItem('selectedTheme');
@@ -17,7 +16,7 @@
       })();
     </script>
 
-    <!-- Librería Oficial de Supabase CDN -->
+    <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
       const SUPABASE_URL = 'https://exsegshoihdoofefjryt.supabase.co';
@@ -26,26 +25,6 @@
     </script>
 
     <style>
-        .btn-sidebar-toggle {
-          position: fixed;
-          top: 15px;
-          left: 15px;
-          width: auto;
-          z-index: 999;
-          background-color: var(--primary, #ffd711);
-          color: white;
-          border: none;
-          font-size: 22px;
-          padding: 8px 14px;
-          border-radius: 8px;
-          cursor: pointer;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-          transition: transform 0.2s ease;
-        }
-        .btn-sidebar-toggle:hover {
-          transform: scale(1.05);
-        }
-
         body {
             background-color: #f4f6f9;
             font-family: 'Arial', sans-serif;
@@ -85,41 +64,6 @@
             height: auto;
         }
 
-        .catalogo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .card-producto {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .card-producto img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-
-        .card-producto h4 {
-            color: #333333;
-            margin-bottom: 5px;
-        }
-
-        .card-producto p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
         button, .btn-whatsapp {
             display: inline-block;
             background-color: #25D366;
@@ -148,166 +92,15 @@
         .btn-secundario:hover {
             background-color: #555;
         }
-
-        /* --- PANEL LATERAL Y OVERLAY --- */
-        .sidebar-overlay {
-          position: fixed;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background: rgba(0,0,0,0.5);
-          z-index: 1000;
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .sidebar-overlay.active {
-          opacity: 1;
-          visibility: visible;
-        }
-
-        .sidebar-panel {
-          position: fixed;
-          top: 0;
-          left: -300px;
-          width: 280px;
-          height: 100%;
-          background-color: var(--bg-sidebar, #ffffff);
-          color: var(--text-sidebar, #333333);
-          z-index: 1001;
-          box-shadow: 4px 0 15px rgba(0,0,0,0.3);
-          transition: left 0.3s ease;
-          display: flex;
-          flex-direction: column;
-        }
-        .sidebar-panel.active {
-          left: 0;
-        }
-
-        .sidebar-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 18px 20px;
-          border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        .sidebar-header h3 { margin: 0; font-size: 20px; }
-        .btn-close {
-          background: none; border: none; font-size: 28px;
-          cursor: pointer; color: inherit;
-        }
-
-        .sidebar-content { padding: 20px; overflow-y: auto; }
-        .sidebar-section h4 { margin-top: 0; font-size: 14px; text-transform: uppercase; color: #888; letter-spacing: 1px; }
-        .sidebar-menu { list-style: none; padding: 0; margin: 15px 0; }
-        .sidebar-menu li { margin-bottom: 12px; }
-        .sidebar-menu a {
-          text-decoration: none;
-          color: inherit;
-          font-weight: bold;
-          font-size: 15px;
-          display: block;
-          padding: 8px 10px;
-          border-radius: 6px;
-          transition: background 0.2s;
-        }
-        .sidebar-menu a:hover { background: rgba(0,0,0,0.06); }
-        .sidebar-divider { border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 20px 0; }
-
-        .theme-subtitle { font-size: 13px; color: #666; margin-bottom: 10px; }
-        .theme-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .btn-theme {
-          border: none;
-          padding: 10px;
-          border-radius: 6px;
-          font-weight: bold;
-          cursor: pointer;
-          font-size: 13px;
-          transition: opacity 0.2s;
-        }
-        .btn-theme:hover { opacity: 0.85; }
-        .theme-light { background-color: #f4f6f8; color: #333; border: 1px solid #ccc; }
-        .theme-dark { background-color: #1e1e1e; color: #fff; }
-        .theme-coffee { background-color: #4a2822; color: #d7ccc8; }
-        .theme-blue { background-color: #5073a9; color: #e3f2fd; }
-
-        /* --- TEMAS (Aplicados a HTML/BODY) --- */
-        html.theme-dark, html.theme-dark body {
-          background-color: #121212 !important;
-          color: #e0e0e0 !important;
-          --bg-sidebar: #1e1e1e;
-          --text-sidebar: #ffffff;
-        }
-        html.theme-coffee, html.theme-coffee body {
-          background-color: #2b1b17 !important;
-          color: #d7ccc8 !important;
-          --bg-sidebar: #3e2723;
-          --text-sidebar: #efebe9;
-        }
-        html.theme-blue, html.theme-blue body {
-          background-color: #5073a9 !important;
-          color: #e6f1ff !important;
-          --bg-sidebar: #5073a9;
-          --text-sidebar: #ffffff;
-        }
-       #btn-close-sidebar {
-  font-size: 22px !important;
-  width: 40px !important;
-  height: 40px !important;
-  line-height: 1 !important;
-  box-sizing: border-box !important;
-  background: transparent !important;
-  /* Se adapta al color de texto principal del tema activo */
-  color: currentColor !important; 
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-#btn-close-sidebar:hover {
-  opacity: 1;
-
-}
-/* Adaptación de tarjetas al Tema Activo */
-html.theme-dark .card-producto,
-html.theme-dark #modal-carrito > div {
-  background-color: #1e1e1e !important;
-  border-color: #333 !important;
-  color: #fff !important;
-}
-
-html.theme-coffee .card-producto,
-html.theme-coffee #modal-carrito > div {
-  background-color: #3e2723 !important;
-  border-color: #4e342e !important;
-  color: #efebe9 !important;
-}
-
-html.theme-blue .card-producto,
-html.theme-blue #modal-carrito > div {
-  background-color: #3b5998 !important;
-  border-color: #2d4373 !important;
-  color: #fff !important;
-}
-
-/* Cambiar color de títulos dentro de las cards en modo oscuro */
-html:not(.theme-light) .card-producto h4 {
-  color: inherit !important;
-}
-
     </style>
-
 </head>
 <body>
-  <!-- Botón Flotante para Abrir el Menú -->
-    <button id="btn-open-sidebar" class="btn-sidebar-toggle" title="Menú de opciones">☰</button>
 
-    <!-- Contenedor donde se cargará dinámicamente sidebar.html -->
-    <div id="sidebar-container"></div>
-
-    <img src="logo.png" alt="Logo de La Casa del Repuesto" class="logo-negocio">
+    <img src="logo.png" alt="Logo de Auto-Motocentro" class="logo-negocio">
     
     <h1>Auto-Motocentro</h1>
     <h2>Todo lo que tu Automóvil y Motocicleta necesita en un solo lugar</h2>
     <p>Ofrecemos repuestos de alta calidad con la mejor atención. ¡Cotizá con nosotros!</p>
-
 
     <hr>
 
@@ -318,14 +111,11 @@ html:not(.theme-light) .card-producto h4 {
     <a href="https://wa.me/50231841198?text=Hola,%20busco%20un%20repuesto" target="_blank">
         <button type="button">Cotizar por WhatsApp 📲</button>
     </a>
-    <script src="carrito.js"></script>
- 
-</div>
+
     <!-- BOTÓN FLOTANTE DEL CARRITO -->
     <div id="boton-carrito-flotante" onclick="document.getElementById('modal-carrito').style.display='block'" style="position:fixed; bottom:20px; right:20px; background:#e63946; color:#fff; padding:12px 20px; border-radius:50px; cursor:pointer; z-index:1000; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
       🛒 Carrito (<span id="cant-carrito">0</span>)
     </div>
-    
 
     <!-- MODAL DEL CARRITO -->
     <div id="modal-carrito" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1001;">
@@ -341,15 +131,18 @@ html:not(.theme-light) .card-producto h4 {
           <strong>Total: <span id="total-carrito">Q0.00</span></strong>
         </div>
 
-        <button onclick="enviarPedidoWhatsApp('5031841198')" style="width:100%; background:#25D366; color:#fff; border:none; padding:12px; margin-top:15px; border-radius:5px; font-weight:bold; cursor:pointer;">
+        <button onclick="enviarPedidoWhatsApp('50231841198')" style="width:100%; background:#25D366; color:#fff; border:none; padding:12px; margin-top:15px; border-radius:5px; font-weight:bold; cursor:pointer;">
           Pedir todo por WhatsApp
         </button>
       </div>
     </div>
     
-      <script src="sidebar.js"></script>
+    <!-- CONTENEDOR UNIFICADO DEL SIDEBAR -->
+    <div id="sidebar-container"></div>
 
-    
+    <!-- SCRIPTS -->
+    <script src="carrito.js"></script>
+    <script src="sidebar.js"></script>
 
 </body>
 </html>
